@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 471340976954792831}
   - component: {fileID: 9083709523739362217}
   - component: {fileID: -3146826528058171420}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Volcanic Rock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -161,3 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15720fc65466a7748b8fa92d47e1edac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rockHealth: 1
+  damageable:
+    serializedVersion: 2
+    m_Bits: 0
