@@ -1,0 +1,21 @@
+.Main_Menu_Buttons {
+    font-size: 100%;
+    -unity-text-align: upper-center;
+}
+
+.Main_Menu_Buttons:hover {
+}
+
+.Main_Menu_Buttons:active {
+    background-color: rgb(24, 255, 0);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.GamePlay_UI {
+    -unity-text-align: upper-left;
+    font-size: 224%;
+    margin-top: 5%;
+}

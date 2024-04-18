@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Prefabs/Managers/UI/StyleSheet_Main_Menu.uss?fileID=7433441132597879392&amp;guid=b13b68236f3aa9e498808885fdf4d459&amp;type=3#StyleSheet_Main_Menu" />
+    <ui:VisualElement style="background-color: rgba(36, 155, 212, 0.59); width: 100%; height: 100%; align-self: center; justify-content: flex-start; align-items: center;">
+        <ui:VisualElement name="Top" style="width: 80%; height: 33.33%;" />
+        <ui:VisualElement name="Mid" style="height: 33.33%; width: 80%; align-items: stretch; align-self: center; justify-content: center;">
+            <ui:Button text="Start" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Button" class="Main_Menu_Buttons" />
+            <ui:Button text="Options" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Button" class="Main_Menu_Buttons" />
+            <ui:Button text="Quit" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Button" class="Main_Menu_Buttons" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Low" style="font-size: 14px; width: 80%; height: 33.33%;" />
+    </ui:VisualElement>
+</ui:UXML>
