@@ -29,3 +29,16 @@
     font-size: 224%;
     margin-top: 5%;
 }
+
+.GameOver_Label {
+    width: 80%;
+    font-size: 202%;
+    flex-shrink: 1;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    height: auto;
+    -unity-text-align: middle-center;
+    white-space: normal;
+    -unity-font-style: bold;
+}

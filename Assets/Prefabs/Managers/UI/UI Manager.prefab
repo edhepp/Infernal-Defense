@@ -47,8 +47,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIComponent: {fileID: 1019983134001855471}
   MainMenu_Asset: {fileID: 0}
-  GamePlay_UI_Asset: {fileID: 0}
-  GamePlay_Menu_Asset: {fileID: 0}
 --- !u!1001 &5147008709347495008
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -104,7 +102,7 @@ PrefabInstance:
     - target: {fileID: 5281152703411402639, guid: cddb1d1a513c0f9459fa2351ee64ed11, type: 3}
       propertyPath: sourceAsset
       value: 
-      objectReference: {fileID: 9197481963319205126, guid: 2f7113eda5c7158468da775d80e51672, type: 3}
+      objectReference: {fileID: 9197481963319205126, guid: b7ca252106eb19041a56e862345c4dc3, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
