@@ -1,0 +1,44 @@
+.Main_Menu_Buttons {
+    font-size: 100%;
+    -unity-text-align: middle-center;
+    width: 80%;
+    flex-grow: 1;
+    margin-top: 1.1%;
+    margin-right: 0;
+    margin-bottom: 1.1%;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
+.Main_Menu_Buttons:hover {
+}
+
+.Main_Menu_Buttons:active {
+    background-color: rgb(24, 255, 0);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.GamePlay_UI {
+    -unity-text-align: upper-left;
+    font-size: 224%;
+    margin-top: 5%;
+}
+
+.GameOver_Label {
+    width: 80%;
+    font-size: 202%;
+    flex-shrink: 1;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    height: auto;
+    -unity-text-align: middle-center;
+    white-space: normal;
+    -unity-font-style: bold;
+}
