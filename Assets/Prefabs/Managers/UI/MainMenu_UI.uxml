@@ -1,13 +1,13 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/Prefabs/Managers/UI/StyleSheet_Main_Menu.uss?fileID=7433441132597879392&amp;guid=b13b68236f3aa9e498808885fdf4d459&amp;type=3#StyleSheet_Main_Menu" />
     <ui:VisualElement style="background-color: rgba(36, 155, 212, 0.59); width: 100%; height: 100%; align-self: center; justify-content: flex-start; align-items: center;">
-        <ui:VisualElement name="Top" style="width: 80%; height: 33.33%; flex-direction: column; background-color: rgba(186, 68, 193, 0.5);">
+        <ui:VisualElement name="Top" style="width: 80%; height: 33.33%; flex-direction: column; background-color: rgba(186, 68, 193, 0);">
             <ui:VisualElement style="flex-grow: 1; flex-direction: row; align-items: stretch; justify-content: space-between; width: 100%; height: 20%;">
                 <ui:Label tabindex="-1" text="Lives: 999" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LivesLabel" class="GamePlay_UI" />
                 <ui:Label tabindex="-1" text="Score: 999,999" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ScoreLabel" class="GamePlay_UI" />
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="Mid" style="height: 33.33%; width: 80%; align-items: center; align-self: center; justify-content: center; background-color: rgba(219, 69, 69, 0.59);">
+        <ui:VisualElement name="Mid" style="height: 33.33%; width: 80%; align-items: center; align-self: center; justify-content: center; background-color: rgba(219, 69, 69, 0);">
             <ui:Label tabindex="-1" text="Game Over" parse-escape-sequences="true" display-tooltip-when-elided="true" name="GameOverLabel" class="GameOver_Label" />
             <ui:Button text="Start" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StartButton" class="Main_Menu_Buttons" style="display: flex;" />
             <ui:Button text="Continue" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ContinueButton" class="Main_Menu_Buttons" style="display: flex;" />
@@ -15,6 +15,6 @@
             <ui:Button text="Restart" parse-escape-sequences="true" display-tooltip-when-elided="true" name="RestartButton" class="Main_Menu_Buttons" />
             <ui:Button text="Quit" parse-escape-sequences="true" display-tooltip-when-elided="true" name="QuitButton" class="Main_Menu_Buttons" />
         </ui:VisualElement>
-        <ui:VisualElement name="Low" style="font-size: 14px; width: 80%; height: auto; background-color: rgba(67, 184, 52, 0.59); flex-grow: 1;" />
+        <ui:VisualElement name="Low" style="font-size: 14px; width: 80%; height: auto; background-color: rgba(67, 184, 52, 0); flex-grow: 1;" />
     </ui:VisualElement>
 </ui:UXML>
