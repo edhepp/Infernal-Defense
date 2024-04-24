@@ -31,6 +31,8 @@ public class UI_Manager : MonoBehaviour
     [SerializeField]
     private VisualTreeAsset MainMenu_Asset = null;
 
+    private VisualElement _mainBaground = null;
+
     //Quit, restart, score, lives, start, options, Continue
     private Button _continue_B = null;
     private Button _options_B = null;
@@ -54,6 +56,7 @@ public class UI_Manager : MonoBehaviour
             UIComponent.visualTreeAsset = MainMenu_Asset;
             //Main menu setup
             SetUIElements();
+            _mainBackgroundColor = _mainBaground.style.backgroundColor;
             MainMenu();
             RegisterAllCallbacks();
         }
@@ -118,6 +121,8 @@ public class UI_Manager : MonoBehaviour
             Debug.Log(_lives_L != null ? "_lives_L Set" : "_lives_L Not found");
         _score_L = root.Q<Label>("LivesLabel");
             Debug.Log(_score_L != null ? "_score_L Set" : "_score_L Not found");
+        _mainBaground = root.Q<VisualElement>("MainVisualElement");
+            Debug.Log(_mainBaground != null ? "_mainBackground Set" : "MainVisualElement not found");
     }
     private void ContinueButton()
     {
@@ -141,6 +146,8 @@ public class UI_Manager : MonoBehaviour
     }
     private void MainMenu()
     {
+        _mainBaground.style.backgroundColor = _mainBackgroundColor;
+
         // Continue false, Options true, Start true, Quit true, restart false
         _start_B.style.display = DisplayStyle.Flex;
         _options_B.style.display = DisplayStyle.Flex;
@@ -155,6 +162,8 @@ public class UI_Manager : MonoBehaviour
     }
     private void GamePlayMenu()
     {
+        _mainBaground.style.backgroundColor = _mainBackgroundColor;
+
         _continue_B.style.display = DisplayStyle.Flex;
         _options_B.style.display = DisplayStyle.Flex;
         _quit_B.style.display = DisplayStyle.Flex;
@@ -166,8 +175,12 @@ public class UI_Manager : MonoBehaviour
         _restart_B.style.display = DisplayStyle.None;
         _gameOver_L.style.display = DisplayStyle.None;
     }
+    private StyleColor _mainBackgroundColor;
+    private StyleColor _clearBackgroundColor = new StyleColor(Color.clear);
     private void GameplayUI()
     {
+        _mainBaground.style.backgroundColor = _clearBackgroundColor;
+
         _lives_L.style.display = DisplayStyle.Flex;
         _score_L.style.display = DisplayStyle.Flex;
 
@@ -180,6 +193,8 @@ public class UI_Manager : MonoBehaviour
     }
     private void GameOver()
     {
+        _mainBaground.style.backgroundColor = _mainBackgroundColor;
+
         _restart_B.style.display = DisplayStyle.Flex;
         _quit_B.style.display = DisplayStyle.Flex;
         _gameOver_L.style.display = DisplayStyle.Flex;
