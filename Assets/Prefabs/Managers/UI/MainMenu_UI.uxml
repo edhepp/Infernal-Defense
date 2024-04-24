@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/Prefabs/Managers/UI/StyleSheet_Main_Menu.uss?fileID=7433441132597879392&amp;guid=b13b68236f3aa9e498808885fdf4d459&amp;type=3#StyleSheet_Main_Menu" />
-    <ui:VisualElement style="background-color: rgba(36, 155, 212, 0.59); width: 100%; height: 100%; align-self: center; justify-content: flex-start; align-items: center;">
+    <ui:VisualElement name="MainVisualElement" style="background-color: rgba(36, 155, 212, 0.59); width: 100%; height: 100%; align-self: center; justify-content: flex-start; align-items: center;">
         <ui:VisualElement name="Top" style="width: 80%; height: 33.33%; flex-direction: column; background-color: rgba(186, 68, 193, 0);">
             <ui:VisualElement style="flex-grow: 1; flex-direction: row; align-items: stretch; justify-content: space-between; width: 100%; height: 20%;">
                 <ui:Label tabindex="-1" text="Lives: 999" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LivesLabel" class="GamePlay_UI" />
