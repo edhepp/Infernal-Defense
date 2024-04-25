@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class ProjectileHandler : MonoBehaviour
 {
+    //Todo: create a pool for projectiles
+
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private Rigidbody2D pivot;
     [SerializeField] private float detachDelay = .2f;

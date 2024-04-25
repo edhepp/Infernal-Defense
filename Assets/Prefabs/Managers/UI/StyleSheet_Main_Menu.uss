@@ -1,5 +1,5 @@
 .Main_Menu_Buttons {
-    font-size: 100%;
+    font-size: 400%;
     -unity-text-align: middle-center;
     width: 80%;
     flex-grow: 1;
@@ -26,13 +26,13 @@
 
 .GamePlay_UI {
     -unity-text-align: upper-left;
-    font-size: 224%;
-    margin-top: 5%;
+    font-size: 500%;
+    margin-top: 18%;
 }
 
 .GameOver_Label {
     width: 80%;
-    font-size: 202%;
+    font-size: 800%;
     flex-shrink: 1;
     align-items: center;
     justify-content: center;

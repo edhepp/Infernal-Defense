@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class RockSpawner : MonoBehaviour
 {
+    //Todo: create a pool for lava rocks
+
     [SerializeField] private GameObject _volcanicRockPrefab;
     [SerializeField] private List<GameObject> _volcanicRockPool;
     [SerializeField] private Vector3 _volcanicRockPoolPosition = new Vector3(-5.0f, 5.0f, 0.0f);
@@ -25,22 +27,36 @@ public class RockSpawner : MonoBehaviour
     }
     void Start()
     {
+        UI_Manager.StartEvent += GameStared;
+        UI_Manager.ContinueEvent += GameStared;
         StartCoroutine(VolcanicRockSpawnRoutine());
     }
 
+    private void UI_Manager_ContinueEvent()
+    {
+        throw new NotImplementedException();
+    }
+
+    private bool _gameStarted = false;
+    private void GameStared()
+    {
+        _gameStarted = true;
+    }
     IEnumerator VolcanicRockSpawnRoutine()
     {
         yield return new WaitForSeconds(_volcanicRockSpawnDelay);
         while (true)
         {
-            // Generates random spawn position
-            Vector3 generateRandomPosition = new Vector3 (UnityEngine.Random.Range(-2f, 2f), 7f, 0);
+            if (_gameStarted)
+            {
+                // Generates random spawn position
+                Vector3 generateRandomPosition = new Vector3(UnityEngine.Random.Range(-2f, 2f), 7f, 0);
 
-            // Get a rock from pool
-            GetLavaRock(generateRandomPosition);
+                // Get a rock from pool
+                GetLavaRock(generateRandomPosition); 
+            }
             yield return new WaitForSeconds(_volcanicRockSpawnRate);
         }
-
     }
     private void GetLavaRock(Vector3 screenSpacePosition)
     {
@@ -62,5 +78,10 @@ public class RockSpawner : MonoBehaviour
             _volcanicRockPool.Add(tempRock);
             _volcanicRockPool.Last().transform.gameObject.SetActive(false);
         }
+    }
+    private void OnDestroy()
+    {
+        UI_Manager.StartEvent -= GameStared;
+        UI_Manager.ContinueEvent -= GameStared;
     }
 }
