@@ -19,6 +19,7 @@ public class UI_Manager : MonoBehaviour
     public static event MenuButtons StartEvent;
     public static event MenuButtons RestartEvent;
     public static event MenuButtons QuitEvent;
+    public static event MenuButtons EscButton;
 
     public delegate void GameState();
     public static event GameState GameOverState; // move to game manager
@@ -39,6 +40,7 @@ public class UI_Manager : MonoBehaviour
     private Button _start_B = null;
     private Button _restart_B = null;
     private Button _quit_B = null;
+    private Button _esc_B = null;
 
     private Label _gameOver_L = null;
     private Label _lives_L = null;
@@ -69,6 +71,7 @@ public class UI_Manager : MonoBehaviour
         _options_B.RegisterCallback<ClickEvent>(_ => OptionsEvent?.Invoke());
         _start_B.RegisterCallback<ClickEvent>(_ => StartButton());
         _quit_B.RegisterCallback<ClickEvent>(_ => QuitButton());
+        _esc_B.RegisterCallback<ClickEvent>(_ => ESCButton());
     }
     private void UnRegisterAllCallbacks()
     {
@@ -114,6 +117,8 @@ public class UI_Manager : MonoBehaviour
             Debug.Log(_restart_B != null ? "_restart_B Set" : "_reset_B Not found");
         _quit_B = root.Q<Button>("QuitButton");
             Debug.Log(_quit_B != null ? "_quit_B Set" : "_quit_B Not found");
+        _esc_B = root.Q<Button>("MenuButton");
+        Debug.Log(_esc_B != null ? "_esc_B Set" : "_quit_B Not found");
 
         _gameOver_L = root.Q<Label>("GameOverLabel");
             Debug.Log(_gameOver_L != null ? "_gameOver_L Set" : "_gameOver_L Not found");
@@ -124,28 +129,42 @@ public class UI_Manager : MonoBehaviour
         _mainBaground = root.Q<VisualElement>("MainVisualElement");
             Debug.Log(_mainBaground != null ? "_mainBackground Set" : "MainVisualElement not found");
     }
+    private bool _escButton = false;
+    private void ESCButton()
+    {
+        if (_escButton)
+            GameplayUI();
+        if(!_escButton)
+            GamePlayMenu();
+        _escButton = !_escButton;
+    }
     private void ContinueButton()
     {
+        _escButton = false;
         ContinueEvent?.Invoke();
         GameplayUI();
     }
     private void RestartButton()
     {
+        _escButton = false;
         RestartEvent?.Invoke();
         GameplayUI();
     }
     private void StartButton()
     {
+        _escButton = false;
         StartEvent?.Invoke();
         GameplayUI();
     }
     private void QuitButton()
     {
+        _escButton = false;
         QuitEvent?.Invoke();
         MainMenu();
     }
     private void MainMenu()
     {
+        _escButton = false;
         _mainBaground.style.backgroundColor = _mainBackgroundColor;
 
         // Continue false, Options true, Start true, Quit true, restart false
@@ -153,6 +172,7 @@ public class UI_Manager : MonoBehaviour
         _options_B.style.display = DisplayStyle.Flex;
         _quit_B.style.display = DisplayStyle.Flex;
 
+        _esc_B.style.display = DisplayStyle.None;
         _continue_B.style.display = DisplayStyle.None;
         _restart_B.style.display = DisplayStyle.None;
         _gameOver_L.style.display = DisplayStyle.None;
@@ -167,6 +187,7 @@ public class UI_Manager : MonoBehaviour
         _continue_B.style.display = DisplayStyle.Flex;
         _options_B.style.display = DisplayStyle.Flex;
         _quit_B.style.display = DisplayStyle.Flex;
+        _esc_B.style.display = DisplayStyle.Flex;
 
         //_lives_L.style.display = DisplayStyle.None;
         //_score_L.style.display = DisplayStyle.None;
@@ -183,6 +204,7 @@ public class UI_Manager : MonoBehaviour
 
         _lives_L.style.display = DisplayStyle.Flex;
         _score_L.style.display = DisplayStyle.Flex;
+        _esc_B.style.display = DisplayStyle.Flex;
 
         _start_B.style.display = DisplayStyle.None;
         _options_B.style.display = DisplayStyle.None;
@@ -193,12 +215,14 @@ public class UI_Manager : MonoBehaviour
     }
     private void GameOver()
     {
+        _escButton = false;
         _mainBaground.style.backgroundColor = _mainBackgroundColor;
 
         _restart_B.style.display = DisplayStyle.Flex;
         _quit_B.style.display = DisplayStyle.Flex;
         _gameOver_L.style.display = DisplayStyle.Flex;
 
+        _esc_B.style.display = DisplayStyle.None;
         _start_B.style.display = DisplayStyle.None;
         _options_B.style.display = DisplayStyle.None;
         _continue_B.style.display = DisplayStyle.None;
