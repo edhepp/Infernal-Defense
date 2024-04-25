@@ -12,6 +12,7 @@ using static Unity.Collections.AllocatorManager;
 public class UI_Manager : MonoBehaviour
 {
     //Todo: Create a singleton and dont destroy on load
+    //Todo: Bug Found with UI Background color, stays clear
     //Todo: do something with Options like volume control (Music, Sound FX)
     public delegate void MenuButtons();
     public static event MenuButtons ContinueEvent;
@@ -19,7 +20,10 @@ public class UI_Manager : MonoBehaviour
     public static event MenuButtons StartEvent;
     public static event MenuButtons RestartEvent;
     public static event MenuButtons QuitEvent;
-    public static event MenuButtons EscButton;
+    public static event MenuButtons ExitEvent;
+
+    public delegate void MenuButtonPingPong(bool pingPong);
+    public static event MenuButtonPingPong EscButtonEvent;
 
     public delegate void GameState();
     public static event GameState GameOverState; // move to game manager
@@ -41,6 +45,7 @@ public class UI_Manager : MonoBehaviour
     private Button _restart_B = null;
     private Button _quit_B = null;
     private Button _esc_B = null;
+    private Button _exit_B = null;
 
     private Label _gameOver_L = null;
     private Label _lives_L = null;
@@ -72,14 +77,18 @@ public class UI_Manager : MonoBehaviour
         _start_B.RegisterCallback<ClickEvent>(_ => StartButton());
         _quit_B.RegisterCallback<ClickEvent>(_ => QuitButton());
         _esc_B.RegisterCallback<ClickEvent>(_ => ESCButton());
+        _exit_B.RegisterCallback<ClickEvent>(_ => ExitEvent?.Invoke());
+
     }
     private void UnRegisterAllCallbacks()
     {
-        _continue_B.UnregisterCallback<ClickEvent>(_ => ContinueEvent?.Invoke());
-        _restart_B.UnregisterCallback<ClickEvent>(_ => RestartEvent?.Invoke());
+        _continue_B.UnregisterCallback<ClickEvent>(_ => ContinueButton());
+        _restart_B.UnregisterCallback<ClickEvent>(_ => RestartButton());
         _options_B.UnregisterCallback<ClickEvent>(_ => OptionsEvent?.Invoke());
-        _start_B.UnregisterCallback<ClickEvent>(_ => StartEvent?.Invoke());
-        _quit_B.UnregisterCallback<ClickEvent>(_ => QuitEvent?.Invoke());
+        _start_B.UnregisterCallback<ClickEvent>(_ => StartButton());
+        _quit_B.UnregisterCallback<ClickEvent>(_ => QuitButton());
+        _esc_B.UnregisterCallback<ClickEvent>(_ => ESCButton());
+        _exit_B.UnregisterCallback<ClickEvent>(_ => ExitEvent?.Invoke());
     }
     private void VerifyUIRef()
     {
@@ -118,7 +127,9 @@ public class UI_Manager : MonoBehaviour
         _quit_B = root.Q<Button>("QuitButton");
             Debug.Log(_quit_B != null ? "_quit_B Set" : "_quit_B Not found");
         _esc_B = root.Q<Button>("MenuButton");
-        Debug.Log(_esc_B != null ? "_esc_B Set" : "_quit_B Not found");
+            Debug.Log(_esc_B != null ? "_esc_B Set" : "_quit_B Not found");
+        _exit_B = root.Q<Button>("ExitButton");
+            Debug.Log(_exit_B != null ? "_exit_B set" : "_exit_B Not found");
 
         _gameOver_L = root.Q<Label>("GameOverLabel");
             Debug.Log(_gameOver_L != null ? "_gameOver_L Set" : "_gameOver_L Not found");
@@ -136,6 +147,8 @@ public class UI_Manager : MonoBehaviour
             GameplayUI();
         if(!_escButton)
             GamePlayMenu();
+
+        EscButtonEvent?.Invoke(_escButton);
         _escButton = !_escButton;
     }
     private void ContinueButton()
@@ -170,8 +183,9 @@ public class UI_Manager : MonoBehaviour
         // Continue false, Options true, Start true, Quit true, restart false
         _start_B.style.display = DisplayStyle.Flex;
         _options_B.style.display = DisplayStyle.Flex;
-        _quit_B.style.display = DisplayStyle.Flex;
+        _exit_B.style.display = DisplayStyle.Flex;
 
+        _quit_B.style.display = DisplayStyle.None;
         _esc_B.style.display = DisplayStyle.None;
         _continue_B.style.display = DisplayStyle.None;
         _restart_B.style.display = DisplayStyle.None;
@@ -192,6 +206,7 @@ public class UI_Manager : MonoBehaviour
         //_lives_L.style.display = DisplayStyle.None;
         //_score_L.style.display = DisplayStyle.None;
 
+        _exit_B.style.display= DisplayStyle.None;
         _start_B.style.display = DisplayStyle.None;
         _restart_B.style.display = DisplayStyle.None;
         _gameOver_L.style.display = DisplayStyle.None;
@@ -206,6 +221,7 @@ public class UI_Manager : MonoBehaviour
         _score_L.style.display = DisplayStyle.Flex;
         _esc_B.style.display = DisplayStyle.Flex;
 
+        _exit_B.style.display = DisplayStyle.None;
         _start_B.style.display = DisplayStyle.None;
         _options_B.style.display = DisplayStyle.None;
         _quit_B.style.display = DisplayStyle.None;
@@ -222,6 +238,7 @@ public class UI_Manager : MonoBehaviour
         _quit_B.style.display = DisplayStyle.Flex;
         _gameOver_L.style.display = DisplayStyle.Flex;
 
+        _exit_B.style.display = DisplayStyle.None;
         _esc_B.style.display = DisplayStyle.None;
         _start_B.style.display = DisplayStyle.None;
         _options_B.style.display = DisplayStyle.None;

@@ -15,6 +15,7 @@
             <ui:Button text="Options" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OptionsButton" class="Main_Menu_Buttons" style="display: flex;" />
             <ui:Button text="Restart" parse-escape-sequences="true" display-tooltip-when-elided="true" name="RestartButton" class="Main_Menu_Buttons" />
             <ui:Button text="Quit" parse-escape-sequences="true" display-tooltip-when-elided="true" name="QuitButton" class="Main_Menu_Buttons" />
+            <ui:Button text="Exit" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ExitButton" class="Main_Menu_Buttons" />
         </ui:VisualElement>
         <ui:VisualElement name="Low" style="font-size: 14px; width: 80%; height: auto; background-color: rgba(67, 184, 52, 0); flex-grow: 1;" />
     </ui:VisualElement>

@@ -29,7 +29,15 @@ public class RockSpawner : MonoBehaviour
     {
         UI_Manager.StartEvent += GameStared;
         UI_Manager.ContinueEvent += GameStared;
+        UI_Manager.EscButtonEvent += PlayPause;
+        UI_Manager.QuitEvent += GameStared;
         StartCoroutine(VolcanicRockSpawnRoutine());
+    }
+
+    private void PlayPause(bool isPlaying)
+    {
+        float timeScale = isPlaying ? 1.0f : 0.1f;
+        Time.timeScale = timeScale;
     }
 
     private void UI_Manager_ContinueEvent()
@@ -41,6 +49,7 @@ public class RockSpawner : MonoBehaviour
     private void GameStared()
     {
         _gameStarted = true;
+        PlayPause(true);
     }
     IEnumerator VolcanicRockSpawnRoutine()
     {
@@ -83,5 +92,6 @@ public class RockSpawner : MonoBehaviour
     {
         UI_Manager.StartEvent -= GameStared;
         UI_Manager.ContinueEvent -= GameStared;
+        UI_Manager.EscButtonEvent -= PlayPause;
     }
 }
