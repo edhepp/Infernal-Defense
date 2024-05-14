@@ -56,6 +56,7 @@ public class UI_Manager : MonoBehaviour
     {
         //todo: Listen for event from Input manager esc for Pausing game
         //todo: Listen for event from Game manager for Game over
+        CalculateLives.GameOverEvent += () => GameOver();
         VerifyUIRef();
         // Run code if all refferences check out as good
         if (_goodUIRefferences)
@@ -89,6 +90,8 @@ public class UI_Manager : MonoBehaviour
         _quit_B.UnregisterCallback<ClickEvent>(_ => QuitButton());
         _esc_B.UnregisterCallback<ClickEvent>(_ => ESCButton());
         _exit_B.UnregisterCallback<ClickEvent>(_ => ExitEvent?.Invoke());
+
+        CalculateLives.GameOverEvent -= () => GameOver();
     }
     private void VerifyUIRef()
     {
@@ -174,6 +177,14 @@ public class UI_Manager : MonoBehaviour
         _escButton = false;
         QuitEvent?.Invoke();
         MainMenu();
+    }
+    public void SetScore(int score)
+    {
+        //Set score
+    }
+    public void SetLives(int lives)
+    {
+        //Set lives
     }
     private void MainMenu()
     {

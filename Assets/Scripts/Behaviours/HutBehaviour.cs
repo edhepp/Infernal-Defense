@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class HutBehaviour : MonoBehaviour
 {
+    //Temperary Event listener Count lives
+    public delegate void Huts();
+    public static event Huts AddHutEvent;
+    public static event Huts RemoveHutEvent;
+
     [SerializeField]
     private bool _isOnFire = false;
     [SerializeField]
@@ -27,6 +32,7 @@ public class HutBehaviour : MonoBehaviour
     {
         // Left off: Bug found animation not playing.
         // each hut in Huts prefab no refference.
+        AddHutEvent?.Invoke();
         _onFireFX = GetComponent<OnFireFX>();
         _edgeCollider = GetComponent<EdgeCollider2D>();
         _onFireFX.OnFire(false);
@@ -52,6 +58,7 @@ public class HutBehaviour : MonoBehaviour
             else if (_isOnFire)
             {
                 _edgeCollider.enabled = false;
+                RemoveHutEvent?.Invoke();
                 gameObject.SetActive(false);
             }
         }
