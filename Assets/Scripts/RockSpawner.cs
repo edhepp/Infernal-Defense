@@ -27,13 +27,20 @@ public class RockSpawner : MonoBehaviour
     }
     void Start()
     {
-        UI_Manager.StartEvent += GameStared;
+        //Error: Why did we not stop listening to events OnDisabled()
+        UI_Manager.RestartEvent += () => DissablePool();
         UI_Manager.ContinueEvent += GameStared;
         UI_Manager.EscButtonEvent += PlayPause;
-        UI_Manager.QuitEvent += GameStared;
+        UI_Manager.StartEvent += GameStared;
+        UI_Manager.QuitEvent += QuitGame;
         StartCoroutine(VolcanicRockSpawnRoutine());
     }
-
+    private bool _quitGame = false;
+    private void QuitGame()
+    {
+        GameStared();
+        _quitGame = true;
+    }
     private void PlayPause(bool isPlaying)
     {
         float timeScale = isPlaying ? 1.0f : 0.1f;
@@ -50,6 +57,11 @@ public class RockSpawner : MonoBehaviour
     {
         _gameStarted = true;
         PlayPause(true);
+        if (_quitGame)
+        {
+            _quitGame = false;
+            DissablePool();
+        }
     }
     IEnumerator VolcanicRockSpawnRoutine()
     {
@@ -78,6 +90,10 @@ public class RockSpawner : MonoBehaviour
         _lavaRock.transform.position = screenSpacePosition;
         _lavaRock.transform.gameObject.SetActive(true);
 
+    }
+    private void DissablePool()
+    {
+        foreach(Transform t in transform) { t.gameObject.SetActive(false); }
     }
     private void PopulatePool()
     {
