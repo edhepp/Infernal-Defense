@@ -42,21 +42,17 @@ public class RockBehavior : MonoBehaviour
     {
         HutBehaviour hutDamaged;
         bool isOnFire = false;
-        Debug.Log("Collider hit with Name: " + collision.tag );
         if(collision.CompareTag("Hut"))
         {
-            Debug.Log("Hut hit", transform);
             hutDamaged = collision.GetComponent<HutBehaviour>();
             isOnFire = hutDamaged.DamageHut();
             if (isOnFire && DamageHutProbability())
             {
-                Debug.Log("onFire destroy");
                 hutDamaged.DamageHut(1);
                 gameObject.SetActive(false);
             }
             else if (!isOnFire)
             {
-                Debug.Log("not on fire damage");
                 hutDamaged.DamageHut(1);
                 gameObject.SetActive(false);
             }

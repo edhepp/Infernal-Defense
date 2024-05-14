@@ -1060,6 +1060,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawn Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 6220303177812191389, guid: 82bb14e9d71d57947aa9a1e812554544, type: 3}
+      propertyPath: _hutsParent
+      value: 
+      objectReference: {fileID: 27719094}
     - target: {fileID: 6303012855962036576, guid: 82bb14e9d71d57947aa9a1e812554544, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1119,7 +1123,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 911095297192929313, guid: a6f99d4e41493344fb6046ccd65e3153, type: 3}
       propertyPath: orthographic size
-      value: 6.116844
+      value: 6.108812
       objectReference: {fileID: 0}
     - target: {fileID: 1982507160901581423, guid: a6f99d4e41493344fb6046ccd65e3153, type: 3}
       propertyPath: m_Name
