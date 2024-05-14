@@ -27,7 +27,6 @@ public class RockSpawner : MonoBehaviour
     }
     void Start()
     {
-        //Error: Why did we not stop listening to events OnDisabled()
         UI_Manager.RestartEvent += () => DissablePool();
         UI_Manager.ContinueEvent += GameStared;
         UI_Manager.EscButtonEvent += PlayPause;
@@ -106,8 +105,10 @@ public class RockSpawner : MonoBehaviour
     }
     private void OnDestroy()
     {
-        UI_Manager.StartEvent -= GameStared;
-        UI_Manager.ContinueEvent -= GameStared;
+        UI_Manager.RestartEvent += () => DissablePool();
         UI_Manager.EscButtonEvent -= PlayPause;
+        UI_Manager.ContinueEvent -= GameStared;
+        UI_Manager.StartEvent -= GameStared;
+        UI_Manager.QuitEvent += QuitGame;
     }
 }
