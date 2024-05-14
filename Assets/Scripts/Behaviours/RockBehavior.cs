@@ -7,6 +7,7 @@ public class RockBehavior : MonoBehaviour
     Rigidbody2D rb;
     [SerializeField] private int _rockHealth = 1;
     [SerializeField] private LayerMask damageable;
+    [SerializeField] private int _destroyProbabiilty = 25;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -39,15 +40,32 @@ public class RockBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        HutBehaviour hutDamaged;
+        bool isOnFire = false;
         Debug.Log("Collider hit with Name: " + collision.tag );
         if(collision.CompareTag("Hut"))
         {
-            Debug.Log("Hut hit");
-            collision.GetComponent<OnFireFX>().OnFire();
-        }else if (collision.tag == "Hut")
-        {
-            Debug.Log("Hut hit 2");
+            Debug.Log("Hut hit", transform);
+            hutDamaged = collision.GetComponent<HutBehaviour>();
+            isOnFire = hutDamaged.DamageHut();
+            if (isOnFire && DamageHutProbability())
+            {
+                Debug.Log("onFire destroy");
+                hutDamaged.DamageHut(1);
+                gameObject.SetActive(false);
+            }
+            else if (!isOnFire)
+            {
+                Debug.Log("not on fire damage");
+                hutDamaged.DamageHut(1);
+                gameObject.SetActive(false);
+            }
+
         }
-        gameObject.SetActive(false);
+    }
+    private bool DamageHutProbability()
+    {
+        int probability = Random.Range(0, 101);
+        return probability <= 25;
     }
 }

@@ -219,7 +219,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _firePrefab: {fileID: 3412340671179662557}
-  _EdgeCollider2D: {fileID: 0}
 --- !u!68 &6633961442749482391
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -279,8 +278,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec50650297ad5c34897ead0cb3c51a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lives: 3
   _isOnFire: 0
+  _edgeCollider: {fileID: 6633961442749482391}
+  _maxHealth: 2
+  _health: 0
 --- !u!1 &8163342817324706536
 GameObject:
   m_ObjectHideFlags: 0
@@ -439,6 +440,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5453756838183430419, guid: f7546eb744f5d5d4d9dd3d09bb540478, type: 3}
       propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8152605683205876444, guid: f7546eb744f5d5d4d9dd3d09bb540478, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8152605683205876444, guid: f7546eb744f5d5d4d9dd3d09bb540478, type: 3}
