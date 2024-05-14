@@ -179,6 +179,7 @@ GameObject:
   - component: {fileID: 6946301401346149517}
   - component: {fileID: 823152953051405474}
   - component: {fileID: 6633961442749482391}
+  - component: {fileID: 6041631481534798166}
   m_Layer: 12
   m_Name: Hut
   m_TagString: Hut
@@ -218,6 +219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _firePrefab: {fileID: 3412340671179662557}
+  _EdgeCollider2D: {fileID: 0}
 --- !u!68 &6633961442749482391
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -265,6 +267,20 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &6041631481534798166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6286331004873098295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec50650297ad5c34897ead0cb3c51a50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lives: 3
+  _isOnFire: 0
 --- !u!1 &8163342817324706536
 GameObject:
   m_ObjectHideFlags: 0
