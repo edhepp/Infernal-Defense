@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngineInternal;
 
@@ -24,6 +25,8 @@ public class CalculateLives : MonoBehaviour
             _lives = 0;
         }
         _lives++;
+        //update UI
+        UI_Manager.Instance.SetLives(_lives);
     }
     private void RemoveLives()
     {
@@ -36,6 +39,8 @@ public class CalculateLives : MonoBehaviour
         {
             GameOverEvent?.Invoke();
         }
+        //Update UI
+        UI_Manager.Instance.SetLives(_lives);
     }
 
     private void OnDisable()

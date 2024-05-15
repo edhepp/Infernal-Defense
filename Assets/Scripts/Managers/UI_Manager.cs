@@ -11,6 +11,7 @@ using static Unity.Collections.AllocatorManager;
 
 public class UI_Manager : MonoBehaviour
 {
+    public static UI_Manager Instance;
     //Todo: Create a singleton and dont destroy on load
     //Todo: Bug Found with UI Background color, stays clear
     //Todo: do something with Options like volume control (Music, Sound FX)
@@ -54,6 +55,16 @@ public class UI_Manager : MonoBehaviour
     private bool _goodUIRefferences = true;
     void Start()
     {
+        if(UI_Manager.Instance != null)
+        {
+            if(UI_Manager.Instance != this)
+                GameObject.Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+
         //todo: Listen for event from Input manager esc for Pausing game
         //todo: Listen for event from Game manager for Game over
         CalculateLives.GameOverEvent += () => GameOver();
@@ -136,9 +147,9 @@ public class UI_Manager : MonoBehaviour
 
         _gameOver_L = root.Q<Label>("GameOverLabel");
             Debug.Log(_gameOver_L != null ? "_gameOver_L Set" : "_gameOver_L Not found");
-        _lives_L = root.Q<Label>("ScoreLabel");
+        _lives_L = root.Q<Label>("LivesLabel");
             Debug.Log(_lives_L != null ? "_lives_L Set" : "_lives_L Not found");
-        _score_L = root.Q<Label>("LivesLabel");
+        _score_L = root.Q<Label>("ScoreLabel");
             Debug.Log(_score_L != null ? "_score_L Set" : "_score_L Not found");
         _mainBaground = root.Q<VisualElement>("MainVisualElement");
             Debug.Log(_mainBaground != null ? "_mainBackground Set" : "MainVisualElement not found");
@@ -185,6 +196,7 @@ public class UI_Manager : MonoBehaviour
     public void SetLives(int lives)
     {
         //Set lives
+        _lives_L.text = lives.ToString();
     }
     private void MainMenu()
     {
