@@ -8,6 +8,9 @@ public class RockBehavior : MonoBehaviour
     [SerializeField] private int _rockHealth = 1;
     [SerializeField] private LayerMask damageable;
     [SerializeField] private int _destroyProbabiilty = 25;
+
+    private Vector2 _WorldBounds = Vector2.one;
+    private float _worldboundsBuffer = 0.0f;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -17,10 +20,13 @@ public class RockBehavior : MonoBehaviour
         //Call attributes
         GenerateRockAttributes();
     }
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        if(transform.position.y <= -10)
+        //Bug: will _WorldBounds update while prefab is dissabled
+    }
+    void FixedUpdate()
+    {
+        if(transform.position.y <= -CameraBounds.Instance.XYBounds.y)
         {
             gameObject.SetActive(false);
         }
@@ -63,5 +69,11 @@ public class RockBehavior : MonoBehaviour
     {
         int probability = Random.Range(0, 101);
         return probability <= 25;
+    }
+
+    private void OnDestroy()
+    {
+        //MemoryLeak: Enable and dissable often 
+        CameraBounds.OnBoundsReset -= () => { _WorldBounds = CameraBounds.Instance.XYBounds; };
     }
 }

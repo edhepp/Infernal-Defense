@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1066979536814386743}
   - component: {fileID: 709805798284155883}
   - component: {fileID: 1831175989348118224}
+  - component: {fileID: -2141268450679240536}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -134,3 +135,15 @@ SpringJoint2D:
   m_Distance: 0.17999995
   m_DampingRatio: 0
   m_Frequency: 1
+--- !u!114 &-2141268450679240536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8751986958567311293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1031990c8bb13134488402c977538925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
