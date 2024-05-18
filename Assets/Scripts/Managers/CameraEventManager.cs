@@ -11,12 +11,12 @@ public class CameraEventManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        CameraReff = GetComponent<Camera>();
     }
     private bool isOrthographic;
     private float currentOrthoSize;
     private void Start()
     {
-        CameraReff = GetComponent<Camera>();
         isOrthographic = CameraReff.orthographic;
         currentOrthoSize = CameraReff.orthographicSize;
     }

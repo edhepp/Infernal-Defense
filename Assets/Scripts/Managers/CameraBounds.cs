@@ -5,8 +5,11 @@ using UnityEngine;
 
 public class CameraBounds : MonoBehaviour
 {
+    public delegate void BoundsReset();
+    public static event BoundsReset OnBoundsReset;
+
     public static CameraBounds Instance;
-    public Vector2 Bounds { get; private set; }
+    public Vector2 XYBounds { get; private set; }
     private Camera cam;
 
     private void Awake()
@@ -39,6 +42,7 @@ public class CameraBounds : MonoBehaviour
         {
             SetPerspectiveBounds();
         }
+        OnBoundsReset?.Invoke();
     }
     private float cameraHeight;
     private float cameraWidth;
@@ -46,10 +50,10 @@ public class CameraBounds : MonoBehaviour
     {
         if(cam != null)
         {
-            cameraHeight = cam.orthographicSize * 2;
+            cameraHeight = cam.orthographicSize;
             cameraWidth = cameraHeight * cam.aspect;
-            Bounds = new Vector2(cameraWidth, cameraHeight);
-            Debug.Log($"Set Ortho Camera bounds set to {Bounds.x} {Bounds.y}");
+            XYBounds = new Vector2(cameraWidth, cameraHeight);
+            Debug.Log($"Set Ortho Camera bounds set to X{XYBounds.x}, Y{XYBounds.y}");
         }
     }
     private float camDistance;
@@ -60,10 +64,10 @@ public class CameraBounds : MonoBehaviour
         if(cam != null)
         {
             camDistance = Mathf.Abs(cam.transform.position.z);
-            frustumHeight = 2.0f * camDistance * Mathf.Tan(cam.fieldOfView * 0.5f * Mathf.Deg2Rad);
+            frustumHeight = camDistance * Mathf.Tan(cam.fieldOfView * 0.5f * Mathf.Deg2Rad);
             frustumWidth = frustumHeight * cam.aspect;
-            Bounds = new Vector2(frustumWidth, frustumHeight);
-            Debug.Log($"Set Perspective Camera bounds to: {Bounds.x} {Bounds.y}");
+            XYBounds = new Vector2(frustumWidth, frustumHeight);
+            Debug.Log($"Set Perspective Camera bounds to: {XYBounds.x} {XYBounds.y}");
         }
     }
     private void OnDisable()
